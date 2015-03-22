@@ -1,4 +1,5 @@
 package UnitTests;
+import recording.Action;
 import recording.Recorder;
 
 /**
@@ -8,18 +9,40 @@ import recording.Recorder;
  */
 public class FakeRobot {
 
-	public static Recorder recorder = new Recorder(true);
-	FakeDriveTrain dt = new FakeDriveTrain();
+	Recorder recorder = new Recorder(true);
+	FakeDriveTrain dt = new FakeDriveTrain(recorder);
+	FakeGamePad gp = new FakeGamePad();
+	FakeForklift fl = new FakeForklift();
+	int a_button = 11;
 	
-	public static void robotInit() { 
+	public void robotInit() { 
 		recorder.start();
 	}
+
+	public void teleopPeriodic() { 
+		
+		if (gp.getRightTrigger() > .1) {
+			double left = gp.getRightTrigger();
+			double right = left;
+			dt.tankDrive(left, right);
+			recorder.add(new Action("tankDrive", new Object[] {left, right}, recorder.getTime()));
+		}
+		
+		if (gp.getRightStickY() > .1) {
+			double direction = gp.getRightStickY();
+			fl.setDir(direction);
+			recorder.add(new Action("setDir", new Object[] {direction}, recorder.getTime()));
+		}
+		
+		recorder.clearIter(); //checks to see if actions are still occurring, if they are not, push them to
+							  //permanent action list
+	}
 	
-	public static void autononomousPeriodic() { 
+	public void autononomousPeriodic() { 
 		
 	}
 	
-	public static void teleopPeriodic() { 
-			
+	public void testPeriodic() {
+		
 	}
 }

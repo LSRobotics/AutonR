@@ -66,8 +66,8 @@ public class Recorder {
 	
 	public void clearIter() {
 		if (on) {
-			Action acts = actions.get(0);
-			for (int i = 0; i < actions.size(); i++, acts = actions.get(i)) {
+			Action acts = current.get(0);
+			for (int i = 0; i < current.size(); i++, acts = current.get(i)) {
 				if (!currentIter.contains(acts)) {
 					push(acts);
 					i--;

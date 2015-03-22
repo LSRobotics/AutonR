@@ -28,6 +28,14 @@ public class Action {
 		maxParamDiff = maxParameterDiff;
 	}
 	
+	public Action(String methodName, Object[] parameters, double startT) {
+		method = methodName;
+		params = parameters;
+		originalParams = parameters;
+		startTime = startT;
+		numParams = 1;
+	}
+	
 	public boolean Equals(Action a) {
 		return a.method.equals(this.method);
 	}
