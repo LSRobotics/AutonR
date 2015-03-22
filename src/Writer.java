@@ -7,10 +7,18 @@ import java.util.ArrayList;
 import org.apache.commons.lang3.math.NumberUtils;
 
 public class Writer {
-	private final int port = 80;
-	private ArrayList<Action> actions;
+	
+	private static final int port = 80;
+	private static final String actionCodeTemplate = 
+			"if ((ti = t.get()) > a.startTime && ti < a.endTime) {"
+			+ "\n\t a.method; " //a.method must be modified to include parameters in a.params[0], a.params[1]...
+		  + "}";
+	private static final String autonCodeTemplate = "";
 	
 	public static void main(String[] args) throws IOException {
+		
+		ArrayList<Action> actions = new ArrayList<Action>();
+		
 		ServerSocket server = new ServerSocket(80);
 		Socket socket;
 		
@@ -26,7 +34,7 @@ public class Writer {
 			while (ln != "endOfParams") {
 				String param = in.readLine();
 				if (NumberUtils.isNumber(ln)) {
-					temp.add(Integer.parseInt(ln));
+					temp.add(Double.parseDouble(ln));
 				}
 				else if (ln.equals("true")) {
 					temp.add(true);
@@ -41,11 +49,24 @@ public class Writer {
 			acts.params = temp.toArray();
 			acts.startTime = Double.parseDouble(in.readLine());
 			acts.endTime = Double.parseDouble(in.readLine());
+			actions.add(acts);
 			ln = in.readLine();
 		}
+		in.close();
 		server.close();
 		socket.close();
+		
+		
+		String code = write(actions);
 	}
 	
-	
+	public static String write(ArrayList<Action> actions) {
+		String code = "";
+		
+		for (Action a : actions) {
+			
+		}
+		
+		return code;
+	}
 }
