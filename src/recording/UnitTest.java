@@ -10,7 +10,7 @@ public class UnitTest {
 		
 	}
 	
-	public static test1() { //simulate 
+	public static void test1() { 
 		
 	}
 
