@@ -1,3 +1,10 @@
+package recording;
+
+/**
+ * 
+ * Represents an action performed by the robot. 
+ *
+ */
 public class Action {
 	
 	public String method;
@@ -12,13 +19,13 @@ public class Action {
 		
 	}
 	
-	public Action(String m, Object[] p, double startT, double mPd) {
-		method = m;
-		params = p;
-		originalParams = p;
+	public Action(String methodName, Object[] parameters, double startT, double maxParameterDiff) {
+		method = methodName;
+		params = parameters;
+		originalParams = parameters;
 		startTime = startT;
 		numParams = 1;
-		maxParamDiff = mPd;
+		maxParamDiff = maxParameterDiff;
 	}
 	
 	public boolean Equals(Action a) {

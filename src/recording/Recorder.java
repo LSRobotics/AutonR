@@ -1,3 +1,5 @@
+package recording;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
@@ -6,7 +8,11 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Timer;
 
-
+/**
+ * 
+ * run on the robot itself; stores all the actions being performed by the robot; sends to driverStation when ready
+ *
+ */
 public class Recorder {
 	
 	public ArrayList<Action> actions;
@@ -35,11 +41,11 @@ public class Recorder {
 						 return;
 					 }
 					 else {
-						 push(acts);
 						 break;
 					 }
 				 }
 			}
+			a.startTime = getTime();
 			current.add(a);
 			currentIter.add(a.method);
 		}

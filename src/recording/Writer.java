@@ -1,3 +1,5 @@
+package recording;
+
 import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,6 +9,11 @@ import java.net.Socket;
 import java.util.ArrayList;
 import org.apache.commons.lang3.math.NumberUtils;
 
+/**
+ * 
+ * Run on the driverStation; recieves a list of actions and compiles them into an autonomous method
+ *
+ */
 public class Writer {
 	
 	private static final int port = 80;
@@ -16,9 +23,8 @@ public class Writer {
 		  + "}\n";
 	private static final String beginAutonCodeTemplate = "public void auton() { \n";
 	private static final String path = ""; //path to write code to
-	
-	public static void main(String[] args) throws IOException {
-		
+
+	public static void listen() throws IOException {
 		ArrayList<Action> actions = recieveActions();
 		String code = write(actions);
 		
