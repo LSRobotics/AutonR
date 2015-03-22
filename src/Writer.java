@@ -10,10 +10,10 @@ public class Writer {
 	
 	private static final int port = 80;
 	private static final String actionCodeTemplate = 
-			"if ((ti = t.get()) > a.startTime && ti < a.endTime) {"
-			+ "\n\t a.method; " //a.method must be modified to include parameters in a.params[0], a.params[1]...
-		  + "}";
-	private static final String autonCodeTemplate = "";
+			"if ((ti = t.get()) > a.startTime && ti < a.endTime) {\n"
+			+ "\n\t a.method;\n" //a.method must be modified to include parameters in a.params[0], a.params[1]...
+		  + "}\n";
+	private static final String beginAutonCodeTemplate = "public void auton() { \n";
 	
 	public static void main(String[] args) throws IOException {
 		
@@ -61,12 +61,27 @@ public class Writer {
 	}
 	
 	public static String write(ArrayList<Action> actions) {
-		String code = "";
+		
+		String code = beginAutonCodeTemplate;
 		
 		for (Action a : actions) {
-			
+			String ifStatement = "";
+			String[] templateSplit = actionCodeTemplate.split("a.startTime");
+			ifStatement = templateSplit[0] + a.startTime + templateSplit[1];
+			templateSplit = ifStatement.split("a.endTime");
+			ifStatement = templateSplit[0] + a.endTime + templateSplit[1];
+			String methodCall = createActionMethod(a);
+			templateSplit = ifStatement.split("a.method");
+			ifStatement = templateSplit[0] + methodCall + templateSplit[1];
+			code += ifStatement;
 		}
-		
+		code += "\n}";
 		return code;
+	}
+	
+	public static String createActionMethod(Action a) {
+		String methodCall = a.method;
+		
+		return methodCall;
 	}
 }
