@@ -12,10 +12,12 @@ public class Recorder {
 	public ArrayList<Action> actions;
 	public ArrayList<Action> current;
 	public ArrayList<String> currentIter;
+	
 	private final String hostName = "";
+	private final int port = 80;
+	
 	//Timer t; //t only apart of FIRST library
 	boolean on;
-	private final int port = 80;
 	
 	public Recorder(boolean b) {
 		on = b;

@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
@@ -14,8 +15,19 @@ public class Writer {
 			+ "\n\t a.method;\n" //a.method must be modified to include parameters in a.params[0], a.params[1]...
 		  + "}\n";
 	private static final String beginAutonCodeTemplate = "public void auton() { \n";
+	private static final String path = ""; //path to write code to
 	
 	public static void main(String[] args) throws IOException {
+		
+		ArrayList<Action> actions = recieveActions();
+		String code = write(actions);
+		
+		FileWriter fw = new FileWriter(path);
+		fw.write(code);
+		fw.close();
+	}
+	
+	public static ArrayList<Action> recieveActions() throws IOException {
 		
 		ArrayList<Action> actions = new ArrayList<Action>();
 		
@@ -45,8 +57,7 @@ public class Writer {
 		server.close();
 		socket.close();
 		
-		
-		String code = write(actions);
+		return actions;
 	}
 	
 	public static String write(ArrayList<Action> actions) {
