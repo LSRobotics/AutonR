@@ -32,19 +32,8 @@ public class Writer {
 			ArrayList<Object> temp = new ArrayList<Object>();
 			ln = in.readLine();
 			while (ln != "endOfParams") {
-				String param = in.readLine();
-				if (NumberUtils.isNumber(ln)) {
-					temp.add(Double.parseDouble(ln));
-				}
-				else if (ln.equals("true")) {
-					temp.add(true);
-				}
-				else if (ln.equals("false")) {
-					temp.add(false);
-				}
-				else {
-					temp.add(ln);
-				}
+				temp.add(ln);
+				ln = in.readLine();
 			}
 			acts.params = temp.toArray();
 			acts.startTime = Double.parseDouble(in.readLine());
@@ -81,7 +70,16 @@ public class Writer {
 	
 	public static String createActionMethod(Action a) {
 		String methodCall = a.method;
-		
+		String parameters = "(";
+		Object o = a.params[0];
+		parameters += o;
+		for (int i = 1; i < a.params.length; i++) {
+			o = a.params[i];
+			parameters += ", ";
+			parameters += o;
+		}
+		parameters += ")";
+		methodCall += parameters;
 		return methodCall;
 	}
 }
