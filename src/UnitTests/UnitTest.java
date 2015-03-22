@@ -1,4 +1,4 @@
-package recording;
+package UnitTests;
 
 import UnitTests.FakeRobot;
 
