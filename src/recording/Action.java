@@ -34,6 +34,7 @@ public class Action {
 		originalParams = parameters;
 		startTime = startT;
 		numParams = 1;
+		maxParamDiff = 0;
 	}
 	
 	public boolean Equals(Action a) {

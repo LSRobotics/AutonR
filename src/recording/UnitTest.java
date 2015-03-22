@@ -6,6 +6,12 @@ public class UnitTest {
 
 	public static void main(String[] args) {
 		FakeRobot robot = new FakeRobot();
+		robot.robotInit();
+		
+	}
+	
+	public static test1() { //simulate 
+		
 	}
 
 }

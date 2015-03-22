@@ -19,7 +19,7 @@ public class Writer {
 	private static final int port = 80;
 	private static final String actionCodeTemplate = 
 			"if ((ti = t.get()) > a.startTime && ti < a.endTime) {\n"
-			+ "\n\t a.method;\n" //a.method must be modified to include parameters in a.params[0], a.params[1]...
+			+ "\n\t a.method;\n" 
 		  + "}\n";
 	private static final String beginAutonCodeTemplate = "public void auton() { \n";
 	private static final String path = ""; //path to write code to
