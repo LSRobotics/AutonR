@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Timer;
-
+import org.apache.commons.lang3.time.StopWatch;
 /**
  * 
  * run on the robot itself; stores all the actions being performed by the robot; sends to driverStation when ready
@@ -21,8 +21,8 @@ public class Recorder {
 	
 	private final String hostName = "";
 	private final int port = 80;
-	
-	//Timer t; //t only apart of FIRST library
+
+	StopWatch watch = new StopWatch();
 	boolean on;
 	
 	public Recorder(boolean b) {
@@ -78,13 +78,12 @@ public class Recorder {
 	}
 	
 	public double getTime() {
-		//return t.get();
-		return 1.000;
+		return watch.getTime();
 	}
 	
 	public void start() {
-//		t.reset();
-//		t.start();
+		watch.reset();
+		watch.start();
 		on = true;
 	}
 	
@@ -93,6 +92,9 @@ public class Recorder {
 			push(current.get(current.size() - 1));
 		}
 		currentIter.clear();
+		watch.stop();
+		watch.reset();
+		on = false;
 	}
 	
 	public void send() throws UnknownHostException, IOException {
