@@ -34,6 +34,9 @@ public class FakeRobot {
 			recorder.add(new Action("setDir", new Object[] {direction}, recorder.getTime()));
 		}
 		
+		if (gp.buttonPressed()) {
+			
+		}
 		recorder.clearIter(); //checks to see if actions are still occurring, if they are not, push them to
 							  //permanent action list
 	}

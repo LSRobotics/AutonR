@@ -1,24 +1,55 @@
 package UnitTests;
 
 public class FakeGamePad {
-		
-	public boolean buttonPressed(int button) {
-		return false;
+	
+	private double rightTrigger;
+	private double leftTrigger;
+	private double leftStick;
+	private double rightStick;
+	private boolean button;
+	
+	public FakeGamePad() {
+		rightTrigger = leftTrigger = leftStick = rightStick = 0;
+		button = false;
+	}
+	
+	public boolean buttonPressed() {
+		return button;
 	}
 	
 	public double getRightTrigger() {
-		return .45;
+		return rightTrigger;
 	}
 	
 	public double getLeftTrigger() {
-		return .45;
+		return leftTrigger;
 	}
 	
 	public double getRightStickX() {
-		return .45;
+		return rightStick;
 	}
 	
 	public double getRightStickY() {
-		return .45;
+		return leftStick;
+	}
+	
+	public void setButtonPressed(boolean b) {
+		button = b;
+	}
+	
+	public void setRightTrigger(double r) {
+		rightTrigger = r;
+	}
+	
+	public void setLeftTrigger(double l) {
+		leftTrigger = l;
+	}
+	
+	public void setRightStickX(double x) {
+		rightStick = x;
+	}
+	
+	public void setRightStickY(double y) {
+		leftStick = y;
 	}
 }

@@ -88,6 +88,13 @@ public class Recorder {
 		on = true;
 	}
 	
+	public void stop() {
+		while (current.size() > 0){
+			push(current.get(current.size() - 1));
+		}
+		currentIter.clear();
+	}
+	
 	public void send() throws UnknownHostException, IOException {
 		Socket socket = new Socket(InetAddress.getByName(hostName), port);
 		PrintWriter out = new PrintWriter(socket.getOutputStream());
