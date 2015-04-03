@@ -18,10 +18,10 @@ public class Writer {
 	
 	private static final int port = 80;
 	private static final String actionCodeTemplate = 
-			"if ((ti = t.get()) > a.startTime && ti < a.endTime) {\n"
-			+ "\n\t a.method;\n" 
-		  + "}\n";
-	private static final String beginAutonCodeTemplate = "public void auton() { \n";
+			"\tif ((ti = t.get()) > a.startTime && ti < a.endTime) {\n"
+			+ "\t\t a.method;\n" 
+		  + "\t}\n";
+	private static final String beginAutonCodeTemplate = "public void auton() {\n\tdouble ti = 0; \n";
 	private static final String path = ""; //path to write code to
 
 	public static void listen() throws IOException {
