@@ -1,6 +1,7 @@
 package UnitTests;
 
 import recording.Action;
+import recording.Writer;
 
 
 public class UnitTest {
@@ -19,11 +20,12 @@ public class UnitTest {
 		robot.recorder.stop();
 		int i = 0;
 		for (Action a:robot.recorder.actions) {
-			System.out.println(a.params[0]);
+			//System.out.println(a.startTime + " " + a.endTime);
 			i++;
 		}
-		System.out.println(i);
-		
+		//System.out.println(i); //number of actions
+		String s = Writer.write(robot.recorder.actions);
+		System.out.println(s);
 	}
 
 }
