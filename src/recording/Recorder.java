@@ -9,9 +9,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import org.apache.commons.lang3.time.StopWatch;
 /**
- * 
  * run on the robot itself; stores all the actions being performed by the robot; sends to driverStation when ready
- *
  */
 public class Recorder {
 	
@@ -22,7 +20,7 @@ public class Recorder {
 	private final String hostName = "";
 	private final int port = 80;
 
-	StopWatch watch = new StopWatch();
+	StopWatch watch = new StopWatch(); //replace StopWatch with Timer (from wpilib) when putting onto robot
 	boolean on;
 	
 	public Recorder(boolean b) {
@@ -85,7 +83,7 @@ public class Recorder {
 	}
 	
 	public double getTime() {
-		return watch.getNanoTime();
+		return watch.getTime();
 	}
 	
 	public void start() {

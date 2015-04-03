@@ -10,9 +10,7 @@ import java.util.ArrayList;
 import org.apache.commons.lang3.math.NumberUtils;
 
 /**
- * 
- * Run on the driverStation; recieves a list of actions and compiles them into an autonomous method
- *
+ * Run on the driverStation; receives a list of actions and compiles them into an autonomous method
  */
 public class Writer {
 	
@@ -27,7 +25,6 @@ public class Writer {
 	public static void listen() throws IOException {
 		ArrayList<Action> actions = recieveActions();
 		String code = write(actions);
-		
 		FileWriter fw = new FileWriter(path);
 		fw.write(code);
 		fw.close();
@@ -81,7 +78,7 @@ public class Writer {
 			ifStatement = templateSplit[0] + methodCall + templateSplit[1];
 			code += ifStatement;
 		}
-		code += "\n}";
+		code += "}";
 		return code;
 	}
 	
