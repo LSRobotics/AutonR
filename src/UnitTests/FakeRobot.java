@@ -28,8 +28,8 @@ public class FakeRobot {
 			recorder.add(new Action("tankDrive", new Object[] {left, right}, recorder.getTime()));
 		}
 		
-		if (gp.getRightStickY() > .1) {
-			double direction = gp.getRightStickY();
+		if (gp.getRightStickX() > .1) {
+			double direction = gp.getRightStickX();
 			fl.setDir(direction);
 			recorder.add(new Action("setDir", new Object[] {direction}, recorder.getTime()));
 		}

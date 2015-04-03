@@ -34,16 +34,18 @@ public class Recorder {
 	
 	public void add(Action a) {
 		if (on) {
-			Action acts = current.get(0);
-			for (int i = 0; i < current.size(); i++, acts = current.get(i)) {
-				 if (a.Equals(acts)) {
-					 if (acts.equalizeParams(a.params)) {
-						 return;
+			if (actions.size() > 0) {
+				for (int i = 0; i < current.size(); i++) {
+					Action acts = current.get(i);
+					 if (a.Equals(acts)) {
+						 if (acts.equalizeParams(a.params)) {
+							 return;
+						 }
+						 else {
+							 break;
+						 }
 					 }
-					 else {
-						 break;
-					 }
-				 }
+				}
 			}
 			a.startTime = getTime();
 			current.add(a);
@@ -66,19 +68,21 @@ public class Recorder {
 	
 	public void clearIter() {
 		if (on) {
-			Action acts = current.get(0);
-			for (int i = 0; i < current.size(); i++, acts = current.get(i)) {
-				if (!currentIter.contains(acts)) {
-					push(acts);
-					i--;
+			if (current.size() > 0) {
+				for (int i = 0; i < current.size(); i++) {
+					Action acts = current.get(i);
+					if (!currentIter.contains(acts)) {
+						push(acts);
+						//i--;
+					}
 				}
+				currentIter.clear();
 			}
-			currentIter.clear();
 		}
 	}
 	
 	public double getTime() {
-		return watch.getTime();
+		return watch.getNanoTime();
 	}
 	
 	public void start() {
