@@ -16,9 +16,13 @@ public class UnitTest {
 			robot.gp.setRightStickX(right);
 			robot.teleopPeriodic();
 		}
+		robot.recorder.stop();
+		int i = 0;
 		for (Action a:robot.recorder.actions) {
 			System.out.println(a.params[0]);
+			i++;
 		}
+		System.out.println(i);
 		
 	}
 

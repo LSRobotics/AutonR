@@ -37,7 +37,7 @@ public class Action {
 		maxParamDiff = 0;
 	}
 	
-	public boolean Equals(Action a) {
+	public boolean equals(Action a) {
 		return a.method.equals(this.method);
 	}
 	
@@ -51,12 +51,15 @@ public class Action {
 		Object[] tempParams = new Object[params.length];
 		System.arraycopy(params, 0, tempParams, 0, params.length);
 		for (int i = 0; i < params.length; i++) {
-			if (p[i] instanceof Integer && tempParams[i] instanceof Integer) {
-				if (Math.abs((int)p[i] - (int)originalParams[i]) > maxParamDiff) {
+			if (p[i] instanceof Double && originalParams[i] instanceof Double) {
+				//System.out.print(p[i] + " " + tempParams[i] + " ");
+				if (Math.abs((double)p[i] - (double)originalParams[i]) > maxParamDiff) {
+					//System.out.println("Greater than " + maxParamDiff);
 					return false;
 				}
 				else {
-					tempParams[i] = (((int)tempParams[i] * numParams) + (int)p[i]) / (numParams + 1);
+					tempParams[i] = (((double)tempParams[i] * numParams) + (double)p[i]) / (numParams + 1);
+					//System.out.println("Lesser than " + maxParamDiff);
 				}
 			}
 			else if (!p[i].equals(tempParams[i])) {

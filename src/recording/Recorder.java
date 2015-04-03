@@ -34,18 +34,18 @@ public class Recorder {
 	
 	public void add(Action a) {
 		if (on) {
-			if (actions.size() > 0) {
-				for (int i = 0; i < current.size(); i++) {
-					Action acts = current.get(i);
-					 if (a.Equals(acts)) {
-						 if (acts.equalizeParams(a.params)) {
-							 return;
-						 }
-						 else {
-							 break;
-						 }
+			for (int i = 0; i < current.size(); i++) {
+				Action acts = current.get(i);
+				if (a.method.equals(acts.method)) {
+					 if (acts.equalizeParams(a.params)) {
+						 currentIter.add(a.method);
+						 return;
 					 }
-				}
+					 else {
+						 push(acts);
+						 break;
+					 }
+				 }
 			}
 			a.startTime = getTime();
 			current.add(a);
@@ -60,9 +60,6 @@ public class Recorder {
 			if (current.contains(a)) {
 				current.remove(a);
 			}
-			if (currentIter.contains(a)) {
-				currentIter.remove(a);
-			}
 		}
 	}
 	
@@ -71,9 +68,15 @@ public class Recorder {
 			if (current.size() > 0) {
 				for (int i = 0; i < current.size(); i++) {
 					Action acts = current.get(i);
-					if (!currentIter.contains(acts)) {
+					boolean inIter = false;
+					for (String a:currentIter) {
+						if (a.equals(acts.method)) {
+							inIter = true;
+						}
+					}
+					if(!inIter) {
 						push(acts);
-						//i--;
+						i--;
 					}
 				}
 				currentIter.clear();
@@ -93,7 +96,7 @@ public class Recorder {
 	
 	public void stop() {
 		while (current.size() > 0){
-			push(current.get(current.size() - 1));
+			push(current.get(0));
 		}
 		currentIter.clear();
 		watch.stop();

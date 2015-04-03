@@ -25,13 +25,13 @@ public class FakeRobot {
 			double left = gp.getRightTrigger();
 			double right = left;
 			dt.tankDrive(left, right);
-			recorder.add(new Action("tankDrive", new Object[] {left, right}, recorder.getTime()));
+			recorder.add(new Action("tankDrive", new Object[] {left, right}, recorder.getTime(), .03));
 		}
 		
 		if (gp.getRightStickX() > .1) {
 			double direction = gp.getRightStickX();
 			fl.setDir(direction);
-			recorder.add(new Action("setDir", new Object[] {direction}, recorder.getTime()));
+			recorder.add(new Action("setDir", new Object[] {direction}, recorder.getTime(), .1));
 		}
 		if (gp.buttonPressed()) {
 			recorder.stop();
